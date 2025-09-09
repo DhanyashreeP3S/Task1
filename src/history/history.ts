@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -11,14 +11,17 @@ import { Router } from '@angular/router';
 import { ExpenseService, Expense } from '../expense/expense-service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+
 
 export interface PeriodicElement {
-  Date: Date;
-  Account: string;
-  Category: string;
-  PaymentMethod: string;
-  Description: string,
-  Notes: string
+  date: Date;
+  account: string;
+  category: string;
+  payment: string;
+  description: string,
+  notes: string
 
 }
 
@@ -26,19 +29,27 @@ const ELEMENT_DATA: Expense[] = []
 
 @Component({
   selector: 'app-history',
-  providers: [provideNativeDateAdapter(),DatePipe],
-  imports: [MatTableModule, MatFormFieldModule, FormsModule, MatInputModule, MatDatepickerModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, DatePipe, ReactiveFormsModule],
+  providers: [provideNativeDateAdapter(),DatePipe,MatSortModule],
+  imports: [MatTableModule,MatSortModule, MatFormFieldModule, FormsModule, MatInputModule, MatDatepickerModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, DatePipe, ReactiveFormsModule],
   templateUrl: './history.html',
   styleUrl: './history.css'
 })
-export class History implements OnInit {
+export class History implements OnInit,AfterViewInit {
+
+
+    @ViewChild(MatSort) sort?: MatSort;
+
+    @ViewChild(MatSort, {static: false}) set value(val: MatSort) {
+      console.log(val);
+    }
 
   formData!: FormGroup;
-  displayedColumns: string[] = ['Date', 'Account', 'Category', 'PaymentMethod', 'Description', 'Notes'];
+  displayedColumns: string[] = ['date', 'account', 'category', 'payment', 'description', 'notes'];
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-item:Expense[]=[]
+  
+    item:Expense[]=[]
   constructor(private route: Router, private expenseService: ExpenseService,private dataPipe:DatePipe) {
 
   }
@@ -64,12 +75,36 @@ item:Expense[]=[]
         data.notes.toLowerCase().includes(filter) ||
         data.category.toLowerCase() === filter.toLowerCase()
     };
+
+    console.log(this.dataSource)
   }
 
 
+
+   ngAfterViewInit() {
+    console.log(this.sort);
+    this.dataSource.sort = this.sort;
+    this.sort?.sortChange.subscribe(data => {
+      console.log(data);
+    })
+  }
+  private _liveAnnouncer = inject(LiveAnnouncer);
+
+
+   announceSortChange(sortState: Sort) { 
+     if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+
+   
   navigate() {
     this.route.navigate(['/expense'])
   }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
