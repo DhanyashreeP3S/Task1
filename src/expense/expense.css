@@ -1,0 +1,32 @@
+#formcontainer{
+justify-items: center;
+}
+.suer{
+    color:#0808fdc5;
+}
+.example-form{
+    border: 2px solid rgb(30, 112, 133);
+    border-radius: 20px;
+    padding: 25px;
+    width: 500px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.example-form:hover{
+    box-shadow: 0px 0px 10px 10px rgb(35, 71, 80) ;
+
+}
+
+
+
+
+  #savebtn{
+    letter-spacing: 2px;
+    height: 40px;
+    background-color: rgb(38, 64, 158);  border: none;height: 30px; border-radius: 10px ; color: white;
+}

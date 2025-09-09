@@ -1,0 +1,100 @@
+
+<div id="formcontainer">
+<form  (submit)="onsubmit()" [formGroup]='form' class="w-130 flex p-4 flex-col gap-4 justify-center rounded-xl  pt-6  border-4 border-sky-500/50 ">
+
+
+  <div class="w-full grid sm:grid-cols-2 grid-cols-1  gap-4 ">
+  <mat-form-field>
+    <mat-label>Account</mat-label>
+
+    <input  type="text" required matInput formControlName="numberFormControl" 
+           placeholder="00.00">
+    @if (form.get('numberFormControl')?.hasError('required')) {
+      <mat-error>Number is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+ <mat-form-field >
+  <mat-label>
+    Payment
+  </mat-label>
+  <mat-select formControlName="payment" required > 
+
+    <mat-option value="Cash">Cash</mat-option>
+    <mat-option value="Gpay">Gpay</mat-option>
+    <mat-option value="PhonePay">PhonePay</mat-option>
+    
+  </mat-select>
+  @if(form.get('payment')?.hasError('required')){
+    <mat-error>Payment is required</mat-error>
+  }
+  </mat-form-field> 
+
+</div>
+
+
+<div class="w-full grid sm:grid-cols-2 grid-cols-1 gap-4 ">
+
+   <mat-form-field  id="category" >
+  <mat-label>
+    Category
+  </mat-label>
+  <mat-select  formControlName="selectCategory" required > 
+        <mat-option >select the category</mat-option>
+    <mat-option value="Food">Food</mat-option>
+    <mat-option value="travel">travel</mat-option>
+    <mat-option value="Bills">Bills</mat-option>
+    <mat-option value="Shopping">Shopping</mat-option>
+    <mat-option value="Other">Other</mat-option>
+  </mat-select>
+  @if(form.get('selectCategory')?.hasError('required')){
+    <mat-error>Category is required</mat-error>
+  }
+  </mat-form-field> 
+<mat-form-field  id="payment">
+  <mat-label>Choose a date</mat-label>
+  <input formControlName="date" matInput required [matDatepicker]="picker">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+
+  
+</mat-form-field>
+
+</div>
+
+ <mat-form-field class="textarea">
+  <mat-label>Description</mat-label>
+  <textarea matInput  placeholder="Enter the expenses"  formControlName="description"></textarea>
+  @if(form.get('description')?.hasError('required') ){
+        <mat-error>Description is required</mat-error>
+
+  } 
+   @if(form.get('description')?.hasError('minlength') ){
+        <mat-error>Description is  maximum 3 length </mat-error>
+
+  } 
+</mat-form-field>
+
+
+<mat-form-field class="textarea">
+  <mat-label>Notes(optional)</mat-label>
+  <textarea matInput   placeholder="Additional notes" formControlName="notes"></textarea>
+     @if(form.get('notes')?.hasError('minlength')){
+        <mat-error>Notes is maximum 5 length</mat-error>
+
+  } 
+</mat-form-field> 
+
+<div class="w-full grid  sm:grid-cols-2 grid-cols-1 gap-4 ">
+
+<button matButton="filled"   class="cursor-pointer"  [disabled]="form.invalid" type="submit">Save Expenses</button>
+    <button matButton="filled"  class="cursor-pointer" (click)="onReset()" type="reset">Reset</button>
+</div>
+
+</form> 
+</div>
+
+
+
+
+

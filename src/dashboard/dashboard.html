@@ -1,0 +1,33 @@
+
+
+<section    class="w-full border-4 items-center grid grid-cols-1  gap-4 lg:grid-cols-4    md:grid-cols-2 " >
+
+
+
+ 
+<div *ngFor="let item of name" >
+
+<mat-card  class=" w-full     mat-elevation-z2">
+  <mat-card-header>
+    <mat-card-title>{{item}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    @if(item =='Dashboard'){
+      <p [(ngModel)]="totalExpenses">{{totalExpenses}}</p>
+    }
+     @if(item =='Add Expense'){
+      <p [(ngModel)]="totalMonth">{{totalMonth}}</p>
+    }
+    @if(item =='Total Transcation'){
+      <p [(ngModel)]="totalItem">{{totalItem}}</p> 
+    }
+     @if(item =='Month Transcation'){
+      <p [(ngModel)]="totalMonthTranscation">{{totalMonthTranscation}}</p>
+    }
+  </mat-card-content>
+</mat-card>
+
+
+</div>
+
+</section>

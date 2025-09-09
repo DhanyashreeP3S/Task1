@@ -1,0 +1,40 @@
+
+
+<div >
+  <p class=" font-bold tracking-widest text-xl text-center  text-[#011c59]">Expense Tracker</p>
+
+  <div class="flex">
+<section class="w-1/4">
+  <nav  class=" flex h-full gap-4 flex-col text-[#faebd7]  bg-[#3094f1] rounded-xl  p-4">
+
+<div class="flex gap-4 ">
+  <mat-icon  routerLink="/dashboard"   aria-hidden="false" aria-label="Example home icon" fontIcon="bar_chart"></mat-icon>
+ <a routerLink="/dashboard" routerLinkActive="active" class="hidden sm:block no-underline text-[#011c59]" >
+ Dashboard</a> <br>
+</div>
+
+
+
+<div class="flex gap-4" >
+  <mat-icon  routerLink="/expense"   aria-hidden="false" aria-label="Example home icon" fontIcon="control_point">
+  </mat-icon><a routerLink="/expense"  routerLinkActive="active"  class="hidden sm:block no-underline text-[#011c59]"> 
+Add Expense</a><br>
+</div>
+
+
+
+<div class="flex gap-4" >
+  <mat-icon routerLink="/history" aria-hidden="false" aria-label="Example home icon" fontIcon="format_list_bulleted"></mat-icon>
+  <a routerLink="/history"   routerLinkActive="active"    class="hidden sm:block no-underline text-[#011c59]">History</a>
+</div>
+</nav>
+</section>
+<section class="w-3/4 pl-4">
+  <router-outlet />
+
+</section>
+
+</div>
+</div>
+
+

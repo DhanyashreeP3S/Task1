@@ -1,0 +1,73 @@
+#box {
+    background-color: #295f6c;
+    letter-spacing: 2px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.table-height {
+    height: calc(100vh - 166px);
+}
+
+@media (width < 40rem) {
+   .table-height {
+    height: calc(100vh - 381px);
+    } 
+}
+
+
+.icon {
+    font-size: 20px;
+    position: absolute;
+}
+
+#inside {
+    /* border: 2px solid black; */
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+
+}
+
+.exportbtn {
+    height: 40px;
+    background-color: rgba(218, 233, 237, 0.954);
+    color: rgb(41, 95, 108);
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    border: none;
+    width: 100px;
+}
+
+.addbtn {
+    height: 40px;
+    background-color: rgba(218, 233, 237, 0.954);
+    color: rgb(41, 95, 108);
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    border: none;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exportbtn:hover {
+    cursor: pointer;
+}
+
+.addbtn:hover {
+    cursor: pointer;
+}
+
+#searchbox {
+    /* border: 2px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
