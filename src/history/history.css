@@ -9,7 +9,7 @@
 
 
 .table-height {
-    height: calc(100vh - 166px);
+    height: calc(100vh - 200px);
 }
 
 @media (width < 40rem) {

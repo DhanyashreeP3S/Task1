@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { ExpenseService, Expense } from '../expense/expense-service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import {MatSort, Sort, MatSortModule, MatSortable} from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 
@@ -39,9 +39,7 @@ export class History implements OnInit,AfterViewInit {
 
     @ViewChild(MatSort) sort?: MatSort;
 
-    @ViewChild(MatSort, {static: false}) set value(val: MatSort) {
-      console.log(val);
-    }
+    
 
   formData!: FormGroup;
   displayedColumns: string[] = ['date', 'account', 'category', 'payment', 'description', 'notes'];
@@ -82,7 +80,7 @@ export class History implements OnInit,AfterViewInit {
 
 
    ngAfterViewInit() {
-    console.log(this.sort);
+    this.sort?.sort(({ id: 'date', start: 'desc'}) as MatSortable)
     this.dataSource.sort = this.sort;
     this.sort?.sortChange.subscribe(data => {
       console.log(data);

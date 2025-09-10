@@ -1,6 +1,6 @@
 
 <div id="formcontainer">
-<form  (submit)="onsubmit()" [formGroup]='form' class="w-130 flex p-4 flex-col gap-4 justify-center rounded-xl  pt-6  border-4 border-sky-500/50 ">
+<form  (submit)="onsubmit()" [formGroup]='form' class="w-130 mt-2  shadow-lg shadow-blue-500/50   flex p-4 flex-col gap-4 justify-center rounded-xl  pt-6  border-4 border-sky-500/50 ">
 
 
   <div class="w-full grid sm:grid-cols-2 grid-cols-1  gap-4 ">
@@ -87,8 +87,8 @@
 
 <div class="w-full grid  sm:grid-cols-2 grid-cols-1 gap-4 ">
 
-<button matButton="filled"   class="cursor-pointer"  [disabled]="form.invalid" type="submit">Save Expenses</button>
-    <button matButton="filled"  class="cursor-pointer" (click)="onReset()" type="reset">Reset</button>
+<button matButton="filled"   class="cursor-pointer ease-in-out hover:-translate-y-1 hover:bg-red-400 hover:scale-100"  [disabled]="form.invalid" type="submit">Save Expenses</button>
+    <button matButton="filled"  class="cursor-pointer  ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-red-400" (click)="onReset()" type="reset">Reset</button>
 </div>
 
 </form> 
