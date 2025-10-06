@@ -28,19 +28,16 @@ totalMonth:number=0;
 totalItem:number=0;
 totalMonthTranscation:number=0;
 
-constructor(private expenseService:ExpenseService,private datePipe: DatePipe){ 
+constructor(private expenseService:ExpenseService,private datePipe: DatePipe){
 
     this.monthDate = Number(this.datePipe.transform(this.today, 'M' ));
    console.log( Number(this.datePipe.transform(this.today, 'M' )));
 }
 
 
-
-
-
 ngOnInit(): void {
-  
-  this.expenseService.getValue().subscribe((name)=>{ 
+
+  this.expenseService.getValue().subscribe((name)=>{
     let length=name.length;
     name.map((item)=>{
     this.totalExpenses+=(+item.account)
@@ -55,8 +52,8 @@ if(Number(mondate )===this.monthDate){
   this.totalMonthTranscation++;
 }
 
-  
-  })  
+
+  })
 })
 
 
@@ -65,6 +62,6 @@ if(Number(mondate )===this.monthDate){
 
   console.log(this.totalExpenses)
 }
-   
+
 
 }
